@@ -1,0 +1,24 @@
+<html>
+
+    <head>
+      <script
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    </head>
+
+    <body>
+
+      <input type="text" id="markerID">Marker ID:</input>
+      <button onclick="getImage()" id="generateButton">Generate</button>
+      <img src="" id="codeImg"></img>
+      <script>
+        function getImage() {
+          var id = $('#markerID').val();
+          console.log(id);
+          $.get("generateCode/"+id, function(data, status){
+              $('#codeImg').attr('src', data);
+          });
+        }
+      </script>
+    </body>
+
+</html>
