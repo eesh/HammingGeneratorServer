@@ -20,7 +20,7 @@ def generateMarker(m_id):
     # cnt = cv2.imencode('.jpg',marker)[1]
     # b64 = base64.encodestring(cnt)
     print("test 1")
-    pil_img = Image.fromarray(marker.toimage(size=128))
+    pil_img = Image.fromarray(marker.toimage(size=128), 'RGB')
     print("test 2")
     buff = BytesIO()
     print("test 3")
