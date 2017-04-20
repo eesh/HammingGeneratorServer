@@ -24,7 +24,7 @@ def generateMarker(markerID):
     return data
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0',port=5000)
 
 # generateMarker(112259237)
 #
