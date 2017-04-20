@@ -16,7 +16,7 @@ def hello():
 @app.route("/generateCode/<int:m_id>")
 def generateMarker(m_id):
     marker = HammingMarker(id=m_id)
-    marker = marker.toimage(size=180)
+    marker = marker.toimage(size=128)
     # cnt = cv2.imencode('.jpg',marker)[1]
     # b64 = base64.encodestring(cnt)
     print("test 1")
