@@ -13,10 +13,10 @@ app = Flask(__name__)
 def hello():
     return render_template("generator.html")
 
-@app.route("/generateCode/<markerID>")
-def generateMarker(markerID):
-    print("test")
-    marker = HammingMarker(id=int(markerID))
+@app.route("/generateCode/<int:m_id>")
+def generateMarker(m_id):
+    print("test", m_id)
+    marker = HammingMarker(id=m_id)
     marker = marker.toimage(size=180)
     imshow(marker, cmap='Greys', interpolation='nearest')
     cnt = cv2.imencode('.png',marker)[1]
