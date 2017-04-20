@@ -17,6 +17,9 @@ def hello():
 def generateMarker(m_id):
     marker = HammingMarker(id=m_id)
     marker = marker.toimage(size=128)
+    for row in range(len(marker)):
+        for column in range(len(marker[0])):
+            print(marker[row][column])
     # cnt = cv2.imencode('.jpg',marker)[1]
     # b64 = base64.encodestring(cnt)
     print("test 1")
