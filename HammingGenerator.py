@@ -24,6 +24,7 @@ def generateMarker(m_id):
         pil_img = Image.fromarray(marker, 'RGB')
     except Exception as e:
         print(e)
+        print("test 1.5")
     print("test 2")
     buff = BytesIO()
     print("test 3")
