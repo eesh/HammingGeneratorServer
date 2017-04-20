@@ -19,10 +19,15 @@ def generateMarker(m_id):
     marker = marker.toimage(size=180)
     # cnt = cv2.imencode('.jpg',marker)[1]
     # b64 = base64.encodestring(cnt)
+    print("test 1")
     pil_img = Image.fromarray(marker.toimage(size=128))
+    print("test 2")
     buff = BytesIO()
+    print("test 3")
     pil_img.save(buff, format="JPEG")
+    print("test 4")
     new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
+    print("test 5")
     data = 'data:image/jpeg;base64,'+new_image_string
     return data
 
