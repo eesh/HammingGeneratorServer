@@ -17,10 +17,13 @@ def hello():
 def generateMarker(m_id):
     marker = HammingMarker(id=m_id)
     marker = marker.toimage(size=180)
-    print(marker[0][0])
-    cnt = cv2.imencode('.jpg',marker)[1]
-    b64 = base64.encodestring(cnt)
-    data = 'data:image/jpeg;base64,'+b64
+    # cnt = cv2.imencode('.jpg',marker)[1]
+    # b64 = base64.encodestring(cnt)
+    pil_img = Image.fromarray(marker.toimage(size=128))
+    buff = BytesIO()
+    pil_img.save(buff, format="JPEG")
+    new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
+    data = 'data:image/jpeg;base64,'+new_image_string
     return data
 
 if __name__ == "__main__":
@@ -31,8 +34,8 @@ if __name__ == "__main__":
 # plt.rcParams['backend'] = "Qt4Agg"
 # plt.ion()
 # marker = HammingMarker.generate()
-# # pil_img = Image.fromarray(marker.toimage(size=128))
-# # buff = BytesIO()
-# # pil_img.save(buff, format="JPEG")
-# # new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
+# pil_img = Image.fromarray(marker.toimage(size=128))
+# buff = BytesIO()
+# pil_img.save(buff, format="JPEG")
+# new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
 # plt.imshow(marker.toimage(size=128), cmap='Greys', interpolation='nearest')
