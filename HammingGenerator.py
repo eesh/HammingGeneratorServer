@@ -15,6 +15,7 @@ def hello():
 
 @app.route("/generateCode/<markerID>")
 def generateMarker(markerID):
+    print("test")
     marker = HammingMarker(id=int(markerID))
     marker = marker.toimage(size=180)
     imshow(marker, cmap='Greys', interpolation='nearest')
