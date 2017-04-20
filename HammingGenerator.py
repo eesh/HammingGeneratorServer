@@ -15,10 +15,8 @@ def hello():
 
 @app.route("/generateCode/<int:m_id>")
 def generateMarker(m_id):
-    print("test", m_id)
     marker = HammingMarker(id=m_id)
     marker = marker.toimage(size=180)
-    imshow(marker, cmap='Greys', interpolation='nearest')
     cnt = cv2.imencode('.png',marker)[1]
     b64 = base64.encodestring(cnt)
     data = 'data:image/png;base64,'+b64
