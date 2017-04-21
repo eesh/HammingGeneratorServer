@@ -384,7 +384,8 @@ class SnapRobotServer(AbstractServer):
                 if (len(detected) == 0):
                     return str(False)
                 else:
-                    return [m.id in markers[marker] for m in detected].join('\n')
+                    print(detected)
+                    return [m.id for m in detected].join('\n')
             except AttributeError:
                 return 'Error: marker detector is not activated'
 
