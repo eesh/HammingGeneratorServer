@@ -381,11 +381,11 @@ class SnapRobotServer(AbstractServer):
         def detect_markers():
             try:
                 detected = rr.robot.marker_detector.markers
+                print(detected)
                 if (len(detected) == 0):
                     return str(False)
                 else:
-                    print(detected)
-                    return [m.id for m in detected].join('\n')
+                    return " ".join(str(m.id) for m in detected)
             except AttributeError:
                 return 'Error: marker detector is not activated'
 
