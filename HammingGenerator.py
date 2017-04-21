@@ -19,24 +19,6 @@ def generateMarker(m_id):
     marker = (1 - marker.toimage(size=180)) * 255
     cnt = cv2.imencode('.jpg',marker)[1]
     b64 = base64.encodestring(cnt)
-    # print("test 1")
-    # try:
-    #     pil_img = Image.fromarray(marker, 'RGB')
-    # except Exception as e:
-    #     print(e)
-    #     print("test 1.5")
-    # print("test 2")
-    # buff = BytesIO()
-    # print("test 3")
-    # pil_img.save(buff, format="png")
-    # print("test 4")
-    # new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
-    # print("test 5")
-    # data = 'data:image/jpeg;base64,'+new_image_string
-    # data = ''
-    # with open("/tmp/bob.png", "rb") as image_file:
-    #     print("opening file")
-    #     data = base64.b64encode(image_file.read())
     data = 'data:image/png;base64,'+b64
     return data
 
