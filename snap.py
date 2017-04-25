@@ -418,7 +418,7 @@ class SnapRobotServer(AbstractServer):
             except AttributeError:
                 return 'Error: camera not activated'
 
-        @self.app.get('camera/grey/image')
+        @self.app.get('/camera/grey/image')
         def get_base64_grey_image(self):
             try:
                 image = rr.robot.camera.frame
