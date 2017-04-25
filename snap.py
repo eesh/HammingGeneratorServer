@@ -436,7 +436,7 @@ class SnapRobotServer(AbstractServer):
                 image = rr.robot.camera.frame
                 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 #black_image = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 10)
-                _, black_image = cv2.threshold(gray_image, 220, 255, cv2.THRESH_BINARY_INV)
+                _, black_image = cv2.threshold(gray_image, 60, 255, cv2.THRESH_BINARY_INV)
                 content = cv2.imencode('.png', black_image)[1]
                 b64 = base64.encodestring(content)
                 data = 'data:image/png;base64,'+ b64
