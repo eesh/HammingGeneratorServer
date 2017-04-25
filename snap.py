@@ -435,11 +435,12 @@ class SnapRobotServer(AbstractServer):
             try:
                 image = rr.robot.camera.frame
                 black_image = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-                content = cv2.imencode('.jpg', black_image)[1]
+                content = cv2.imencode('.png', black_image)[1]
                 b64 = base64.encodestring(content)
-                data = 'data:image/jpg;base64,'+ b64
+                data = 'data:image/png;base64,'+ b64
                 return data
-            except:
+            except Exception as e:
+                print(e)
                 return 'Error: camera not activated'
 
         @self.app.get('/ik/<chain>/endeffector')
