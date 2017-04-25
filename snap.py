@@ -7,6 +7,8 @@ import shutil
 import bottle
 import socket
 import logging
+import cv2
+import base64
 
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
