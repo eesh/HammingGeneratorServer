@@ -412,8 +412,8 @@ class SnapRobotServer(AbstractServer):
             try:
                 image = rr.robot.camera.frame
                 content = cv2.imencode('.jpg', image)[1]
-                base64 = base64.encodestring(content)
-                data = 'data:image/jpg;base64,'+ base64
+                b64 = base64.encodestring(content)
+                data = 'data:image/jpg;base64,'+ b64
                 return data
             except AttributeError:
                 return 'Error: camera not activated'
@@ -424,8 +424,8 @@ class SnapRobotServer(AbstractServer):
                 image = rr.robot.camera.frame
                 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 content = cv2.imencode('.jpg', gray_image)[1]
-                base64 = base64.encodestring(content)
-                data = 'data:image/jpg;base64,'+ base64
+                b64 = base64.encodestring(content)
+                data = 'data:image/jpg;base64,'+ b64
                 return data
             except:
                 return 'Error: camera not activated'
