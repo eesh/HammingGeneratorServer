@@ -422,8 +422,22 @@ class SnapRobotServer(AbstractServer):
         def get_base64_grey_image():
             try:
                 image = rr.robot.camera.frame
+                cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv2.THRESH_BINARY,11,2)
                 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 content = cv2.imencode('.jpg', gray_image)[1]
+                b64 = base64.encodestring(content)
+                data = 'data:image/jpg;base64,'+ b64
+                return data
+            except:
+                return 'Error: camera not activated'
+
+        @self.app.get('/camera/black/image')
+        def get_base64_grey_image():
+            try:
+                image = rr.robot.camera.frame
+                black_image = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+                content = cv2.imencode('.jpg', black_image)[1]
                 b64 = base64.encodestring(content)
                 data = 'data:image/jpg;base64,'+ b64
                 return data
