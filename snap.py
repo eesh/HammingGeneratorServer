@@ -419,7 +419,7 @@ class SnapRobotServer(AbstractServer):
                 return 'Error: camera not activated'
 
         @self.app.get('/camera/grey/image')
-        def get_base64_grey_image(self):
+        def get_base64_grey_image():
             try:
                 image = rr.robot.camera.frame
                 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
