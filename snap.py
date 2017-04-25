@@ -381,7 +381,6 @@ class SnapRobotServer(AbstractServer):
         def detect_markers():
             try:
                 detected = rr.robot.marker_detector.markers
-                print(detected)
                 if (len(detected) == 0):
                     return str(False)
                 else:
@@ -402,9 +401,29 @@ class SnapRobotServer(AbstractServer):
                 if (len(detected) == 0):
                     return str(False)
                 else:
-                    return [m.id for m in detected].join('\n')
+                    return any([m.id in marker for m in detected])
             except AttributeError:
                 return 'Error: marker detector is not activated'
+
+        @self.app.get('/camera/image')
+        def get_camera_image():
+            try:
+                image = rr.robot.camera.frame
+                content = cv2.imencode('.jpg', image)[1]
+                base64 = base64.encodestring(content)
+                data = 'data:image/jpg;base64,'+ base64
+                return data
+            except AttributeError:
+                return 'Error: camera not activated'
+
+        @self.app.get('camera/grey/image')
+        def get_base64_grey_image(self):
+            image = rr.robot.camera.frame
+            gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            content = cv2.imencode('.jpg', gray_image)[1]
+            base64 = base64.encodestring(content)
+            data = 'data:image/jpg;base64,'+ base64
+            return data
 
         @self.app.get('/ik/<chain>/endeffector')
         def ik_endeffector(chain):
