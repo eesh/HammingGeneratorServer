@@ -433,7 +433,7 @@ class SnapRobotServer(AbstractServer):
         @self.app.get('/camera/black/image')
         def get_base64_grey_image():
             try:
-                _, image = rr.robot.camera.frame
+                image = rr.robot.camera.frame
                 _, gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 #black_image = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 10)
                 black_image = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY_INV)
