@@ -418,12 +418,15 @@ class SnapRobotServer(AbstractServer):
 
         @self.app.get('camera/grey/image')
         def get_base64_grey_image(self):
-            image = rr.robot.camera.frame
-            gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            content = cv2.imencode('.jpg', gray_image)[1]
-            base64 = base64.encodestring(content)
-            data = 'data:image/jpg;base64,'+ base64
-            return data
+            try:
+                image = rr.robot.camera.frame
+                gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                content = cv2.imencode('.jpg', gray_image)[1]
+                base64 = base64.encodestring(content)
+                data = 'data:image/jpg;base64,'+ base64
+                return data
+            except:
+                return 'Error: camera not activated'
 
         @self.app.get('/ik/<chain>/endeffector')
         def ik_endeffector(chain):
