@@ -167,7 +167,7 @@ class SnapRobotServer(AbstractServer):
 
         set_snap_server_variables(find_local_ip(), port, path=get_snap_user_projects_directory())
         os.system('/bin/bash /home/poppy/HammingGeneratorServer/start.sh &')
-        print("Checking if this will be printed on boot")
+        os.system('/bin/bash /home/poppy/Poppy_BLE_Server/start.sh &')
 
         @self.app.get('/')
         def get_sitemap():
