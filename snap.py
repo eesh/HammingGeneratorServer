@@ -166,7 +166,7 @@ class SnapRobotServer(AbstractServer):
             shutil.copyfile(xml_file, dst)
 
         set_snap_server_variables(find_local_ip(), port, path=get_snap_user_projects_directory())
-        os.system('bash /home/poppy/HammingGeneratorServer/start.sh &')
+        os.system('/bin/bash /home/poppy/HammingGeneratorServer/start.sh &')
         print("Checking if this will be printed on boot")
 
         @self.app.get('/')
