@@ -166,6 +166,8 @@ class SnapRobotServer(AbstractServer):
             shutil.copyfile(xml_file, dst)
 
         set_snap_server_variables(find_local_ip(), port, path=get_snap_user_projects_directory())
+        os.system('python /home/poppy/HammingGeneratorServer/HammingGenerator.py')
+        print("Checking if this will be printed on boot")
 
         @self.app.get('/')
         def get_sitemap():
@@ -466,7 +468,6 @@ class SnapRobotServer(AbstractServer):
             http_server = HTTPServer(WSGIContainer(self.app))
             http_server.listen(self.port)
             loop.start()
-            os.system('python /home/poppy/HammingGeneratorServer/HammingGenerator.py')
 
         except socket.error as serr:
             # Re raise the socket error if not "[Errno 98] Address already in use"
